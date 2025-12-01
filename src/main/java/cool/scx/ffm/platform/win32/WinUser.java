@@ -1,20 +1,21 @@
 package cool.scx.ffm.platform.win32;
 
-import cool.scx.ffm.type.Callback;
-import cool.scx.ffm.type.Struct;
+
+import dev.scx.ffi.type.FFICallback;
+import dev.scx.ffi.type.FFIStruct;
 
 import java.lang.foreign.MemorySegment;
 
 public final class WinUser {
 
     /// EnumWindows 回调接口
-    public interface WNDENUMPROC extends Callback {
+    public interface WNDENUMPROC extends FFICallback {
 
         boolean callback(MemorySegment hwnd, long lParam);
 
     }
 
-    public static class POINT implements Struct {
+    public static class POINT implements FFIStruct {
         public int x;
         public int y;
     }

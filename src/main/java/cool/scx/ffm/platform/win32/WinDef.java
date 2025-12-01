@@ -1,11 +1,11 @@
 package cool.scx.ffm.platform.win32;
 
-import cool.scx.ffm.type.Struct;
+import dev.scx.ffi.type.FFIStruct;
 
 public final class WinDef {
 
     /// GetWindowRect 结构
-    public static class RECT implements Struct {
+    public static class RECT implements FFIStruct {
 
         public int left;
         public int top;

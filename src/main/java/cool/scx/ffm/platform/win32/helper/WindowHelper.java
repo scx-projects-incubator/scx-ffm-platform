@@ -47,7 +47,7 @@ public final class WindowHelper {
     public record WindowInfo(MemorySegment hWnd,
                              String className,
                              String title,
-                             boolean isVisible,
+                             int isVisible,
                              MemorySegment threadProcessId) {
 
     }

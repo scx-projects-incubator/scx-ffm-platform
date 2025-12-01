@@ -1,8 +1,8 @@
 package cool.scx.ffm.platform.win32;
 
-import cool.scx.ffm.ScxFFM;
 import cool.scx.ffm.platform.win32.WinDef.RECT;
 import cool.scx.ffm.platform.win32.WinUser.WNDENUMPROC;
+import dev.scx.ffi.ScxFFI;
 
 import java.lang.foreign.MemorySegment;
 
@@ -14,13 +14,13 @@ import static cool.scx.ffm.platform.win32.WinUser.POINT;
 /// @version 0.0.1
 public interface User32 {
 
-    User32 USER32 = ScxFFM.ffmProxy("user32", User32.class);
+    User32 USER32 = ScxFFI.createFFI( User32.class,"user32");
 
     // https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-messageboxa
     int MessageBoxA(MemorySegment hWnd, String lpText, String lpCaption, int uType);
 
     // https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-iswindowvisible
-    boolean IsWindowVisible(MemorySegment hWnd);
+    int IsWindowVisible(MemorySegment hWnd);
 
     MemorySegment GetParent(MemorySegment hWnd);
 
@@ -32,20 +32,20 @@ public interface User32 {
 
     MemorySegment GetWindowThreadProcessId(MemorySegment hWnd, MemorySegment lpdwProcessId);
 
-    boolean PostMessageW(MemorySegment hWnd, int Msg, MemorySegment wParam, MemorySegment lParam);
+    int PostMessageW(MemorySegment hWnd, int Msg, MemorySegment wParam, MemorySegment lParam);
 
-    boolean SendMessageW(MemorySegment hWnd, int Msg, MemorySegment wParam, MemorySegment lParam);
+    int SendMessageW(MemorySegment hWnd, int Msg, MemorySegment wParam, MemorySegment lParam);
 
-    boolean EnumWindows(WNDENUMPROC lpEnumFunc, long lParam);
+    int EnumWindows(WNDENUMPROC lpEnumFunc, long lParam);
 
     MemorySegment FindWindowA(String lpClassName, String lpWindowName);
 
-    boolean CloseWindow(MemorySegment hWnd);
+    int CloseWindow(MemorySegment hWnd);
 
-    boolean GetWindowRect(MemorySegment hWnd, RECT lpRect);
+    int GetWindowRect(MemorySegment hWnd, RECT lpRect);
 
-    boolean SetCursorPos(int x, int y);
+    int SetCursorPos(int x, int y);
 
-    boolean GetCursorPos(POINT lpPoint);
+    int GetCursorPos(POINT lpPoint);
 
 }
