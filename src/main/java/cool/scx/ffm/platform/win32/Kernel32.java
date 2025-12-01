@@ -1,7 +1,8 @@
 package cool.scx.ffm.platform.win32;
 
-import cool.scx.ffm.ScxFFM;
-import cool.scx.ffm.mapper.IntMapper;
+
+import dev.scx.ffi.ScxFFI;
+import dev.scx.ffi.type.IntRef;
 
 import java.lang.foreign.MemorySegment;
 
@@ -11,15 +12,15 @@ import java.lang.foreign.MemorySegment;
 /// @version 0.0.1
 public interface Kernel32 {
 
-    Kernel32 KERNEL32 = ScxFFM.ffmProxy("kernel32", Kernel32.class);
+    Kernel32 KERNEL32 = ScxFFI.createFFI( Kernel32.class,"kernel32");
 
     // https://learn.microsoft.com/zh-cn/windows/console/getstdhandle
     MemorySegment GetStdHandle(int nStdHandle);
 
     // https://learn.microsoft.com/zh-cn/windows/console/getconsolemode
-    boolean GetConsoleMode(MemorySegment hConsoleHandle, IntMapper lpMode);
+    int GetConsoleMode(MemorySegment hConsoleHandle, IntRef lpMode);
 
     // https://learn.microsoft.com/zh-cn/windows/console/setconsolemode
-    boolean SetConsoleMode(MemorySegment hConsoleHandle, long dwMode);
+    int SetConsoleMode(MemorySegment hConsoleHandle, long dwMode);
 
 }
